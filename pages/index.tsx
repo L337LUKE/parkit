@@ -1,7 +1,11 @@
+import React from 'react';
+import { Layout } from '../src/components/Templates';
+import { PageProvider } from '../src/components/Organisms';
+
 const IndexPage = () => (
-    <h1 data-attr="ssss">
-        Testing Next.js App written in TypeScript with Jest
-    </h1>
+    <PageProvider>
+        <Layout>Some kind of text</Layout>
+    </PageProvider>
 );
 
 export default IndexPage;
