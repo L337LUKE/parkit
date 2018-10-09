@@ -1,12 +1,8 @@
 import React, { SFC, Fragment } from 'react';
-import styles from './styles';
+import { IPageLayout } from './types';
 import { Header, Footer } from '../../Molecules';
 
-interface IMainProps {
-    children: (JSX.Element | string)[] | JSX.Element | string;
-}
-
-const Layout: SFC<IMainProps> = ({ children }) => (
+const PageLayout: SFC<IPageLayout> = ({ children }) => (
     <Fragment>
         <Header />
         <main>{children && children}</main>
@@ -14,4 +10,4 @@ const Layout: SFC<IMainProps> = ({ children }) => (
     </Fragment>
 );
 
-export default Layout;
+export default PageLayout;

@@ -1,10 +1,16 @@
 import React from 'react';
-import { Layout } from '../src/components/Templates';
-import { PageProvider } from '../src/components/Organisms';
+import { CardGalleryList } from '../src/components/Templates';
+import { PageLayout, PageProvider } from '../src/components/Organisms';
+import { MaxWidthContainer } from '../src/components/Atoms';
 
 const IndexPage = () => (
     <PageProvider>
-        <Layout>Some kind of text</Layout>
+        <PageLayout>
+            <MaxWidthContainer>
+                <h2>Flickr Photo Stream</h2>
+                <CardGalleryList />
+            </MaxWidthContainer>
+        </PageLayout>
     </PageProvider>
 );
 

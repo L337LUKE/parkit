@@ -1,17 +1,24 @@
-import React, { SFC, Fragment } from 'react';
-import { Box } from '../../Atoms';
-import defaultStyles, { boxStyle } from './styles';
+import React from 'react';
+import styled from 'styled-components';
 
-interface IHeaderProps {}
+const Header = styled.header`
+    display: flex;
+    align-items: center;
+    padding: 0.625em 0.9375em;
 
-const Header: SFC<IHeaderProps> = () => (
-    <Fragment>
-        <Box className={boxStyle.className} component="header">
-            <h1 className="h4">Technical Test</h1>
-        </Box>
-        {boxStyle.styles}
-        <style jsx>{defaultStyles}</style>
-    </Fragment>
+    @media only screen and (min-width: 36.25em) {
+        padding: 0.625em 1.875em;
+    }
+`;
+
+const Title = styled.h1`
+    font-size: 1.414em;
+    font-weight: 700;
+    margin: 0;
+`;
+
+export default () => (
+    <Header>
+        <Title>Technical Test</Title>
+    </Header>
 );
-
-export default Header;
