@@ -6,28 +6,22 @@ import {
     PageLayout,
     PageProvider
 } from '../src/components/Organisms';
-import { MaxWidthContainer, ErrorPhotos } from '../src/components/Atoms';
+import { MaxWidthContainer } from '../src/components/Atoms';
 
 const StyledMaxWidthContainer = styled(MaxWidthContainer)`
     flex-flow: column wrap;
 `;
 
-const IndexPage = () => (
+const TagPage = ({ query }) => (
     <PageProvider>
         <PageLayout>
             <StyledMaxWidthContainer>
-                <h2>Latest Posts</h2>
-                <GalleryFeed>
-                    {({ galleryFeed, isFetching }) => (
+                <h2>Tag: {query && query.tag && query.tag}</h2>
+                <GalleryFeed tags={query && query.tag && query.tag}>
+                    {({ galleryFeed }) => (
                         <Fragment>
-                            {isFetching ? (
-                                <p>Loading...</p>
-                            ) : (
-                                galleryFeed && (
-                                    <CardGalleryList
-                                        galleryItems={galleryFeed}
-                                    />
-                                )
+                            {galleryFeed && (
+                                <CardGalleryList galleryItems={galleryFeed} />
                             )}
                         </Fragment>
                     )}
@@ -37,4 +31,6 @@ const IndexPage = () => (
     </PageProvider>
 );
 
-export default IndexPage;
+TagPage.getInitialProps = ({ query }) => ({ query });
+
+export default TagPage;

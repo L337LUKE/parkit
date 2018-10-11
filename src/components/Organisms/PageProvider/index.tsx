@@ -1,5 +1,6 @@
 import React, { Fragment } from 'react';
-import { injectGlobal } from 'styled-components';
+import { injectGlobal, ThemeProvider } from 'styled-components';
+import { colors, media } from '../../../theme';
 import { normalize } from 'polished';
 import Head from 'next/head';
 
@@ -17,7 +18,6 @@ injectGlobal`
 
     body {
         background-color: white;
-        font-family: 'Roboto', serif;
         font-weight: 500;
         line-height: 1.45;
         color: #333;
@@ -46,6 +46,11 @@ injectGlobal`
     small, .font_small {font-size: 0.707em;}
 `;
 
+const theme = {
+    ...colors,
+    ...media
+};
+
 export default ({ children }) => (
     <Fragment>
         <Head>
@@ -54,6 +59,6 @@ export default ({ children }) => (
                 rel="stylesheet"
             />
         </Head>
-        {children && children}
+        <ThemeProvider theme={theme}>{children && children}</ThemeProvider>
     </Fragment>
 );

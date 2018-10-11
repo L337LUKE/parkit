@@ -1,3 +1,3 @@
-export const ToPercentage = (num: number): number => num * 100;
+export const ToPercentage = (num: number): string => `${num * 100}%`;
 
 export default ToPercentage;

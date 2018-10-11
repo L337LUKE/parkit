@@ -1,5 +1,6 @@
 import { Component } from 'react';
-import { getPublicFeed } from '../../../services/flickr';
+import { photoSearch } from '../../../services/flickr';
+import { IFlickrPhotoSearchPhoto } from '../../../typings/iflickrApi';
 
 interface IInjectedProps {
     galleryFeed: IGalleryFeedProps['galleryFeed'];
@@ -8,11 +9,12 @@ interface IInjectedProps {
 
 interface IGalleryFeedProps {
     children: (data: IInjectedProps) => JSX.Element | string;
-    galleryFeed?: any[];
+    tags?: string;
+    galleryFeed?: IFlickrPhotoSearchPhoto[];
 }
 
 interface IGalleryFeedState {
-    galleryFeed: any[];
+    galleryFeed: IFlickrPhotoSearchPhoto[];
     isFetching: boolean;
 }
 
@@ -22,11 +24,34 @@ class GalleryFeed extends Component<IGalleryFeedProps, IGalleryFeedState> {
         isFetching: false
     };
 
-    getFeed = async (): Promise<void> => {
+    constructor(props) {
+        super(props);
+        this.getFeed = this.getFeed.bind(this);
+    }
+
+    async getFeed(): Promise<void> {
+        const { tags } = this.props;
+
         this.setState(() => ({ isFetching: true }));
-        // const { items } = await getPublicFeed();
-        // this.setState(() => ({ galleryFeed: items && items }));
-    };
+
+        try {
+            await photoSearch({});
+
+            const data = await photoSearch({
+                tags: tags && tags
+            });
+
+            if (!data || data.photos.photo.length <= 0)
+                throw new Error('no Data');
+
+            this.setState(() => ({
+                galleryFeed: data.photos.photo,
+                isFetching: false
+            }));
+        } catch (error) {
+            console.error(error);
+        }
+    }
 
     componentDidMount() {
         this.getFeed();

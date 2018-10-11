@@ -1,14 +1,33 @@
-import axios from 'axios';
-import { CORS_ANYWHERE, FLICKR_API } from '../config/api';
+import jsonpP from 'jsonp-p';
+import { FLICKR_API, FLICKR_KEY } from '../config/api';
+import { IFlickrPhotoSearch } from '../typings/iflickrApi';
 
-interface IFlickrPublicFeed {}
+interface IPhotoSearch {
+    tags?: string;
+    per_page?: number;
+    page?: number;
+}
 
-export const getPublicFeed = async () => {
+export const photoSearch = async ({
+    tags = '',
+    per_page = 12,
+    page = 1
+}: IPhotoSearch): Promise<IFlickrPhotoSearch> => {
+    const urlParams = '&format=json'
+        .concat('&privacy_filter=1')
+        .concat('&safe_search=1')
+        .concat('&content_type=6')
+        .concat('&extras=description,owner_name,tags,url_m')
+        .concat(`&tags=${tags ? tags : ''}`)
+        .concat(`&api_key=${FLICKR_KEY}`)
+        .concat(`&per_page=${per_page}`)
+        .concat(`&page=${page}`);
+
     try {
-        const response = await axios.get(
-            `${CORS_ANYWHERE}/${FLICKR_API}/feeds/photos_public.gne?tagmode=any&format=json&nojsoncallback=1`
-        );
-        return response.data;
+        return await jsonpP(
+            `${FLICKR_API}/rest/?method=flickr.photos.getRecent${urlParams}`,
+            { name: 'jsonFlickrApi' }
+        ).promise;
     } catch (error) {
         console.error(error);
     }

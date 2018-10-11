@@ -1,13 +1,7 @@
-import React, { SFC } from 'react';
 import styled from 'styled-components';
+import React, { SFC } from 'react';
+import { complement } from 'polished';
 import { ILinkOwnProps } from './types';
-
-const LinkOwnStyles = `
-    text-decoration: underline;
-    transition: 150ms ease color;
-    border: 1px solid transparent;
-    white-space: nowrap;
-`;
 
 const LinkOwn: SFC<ILinkOwnProps> = ({
     children,
@@ -27,6 +21,23 @@ const LinkOwn: SFC<ILinkOwnProps> = ({
     </a>
 );
 
-export default styled(LinkOwn)`
-    ${LinkOwnStyles};
+export const StyledLinkOwn = styled(LinkOwn)`
+    text-decoration: underline;
+    transition: 150ms ease color;
+    border: 1px solid transparent;
+    white-space: nowrap;
+    text-decoration: none;
+    color: ${props => props.theme.turqoise};
+    border-bottom: 1px dotted transparent;
+    position: relative;
+    transform: color 150ms ease border 150ms ease;
+
+    &:hover,
+    &:active,
+    &:focus {
+        color: ${props => complement(props.theme.turqoise)};
+        border-bottom: 1px dotted ${props => props.theme.red};
+    }
 `;
+
+export default StyledLinkOwn;
