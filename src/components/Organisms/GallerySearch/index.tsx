@@ -18,21 +18,21 @@ class SearchFormController extends PureComponent<
         this.setState({
             searchValue: e.target.value
         });
-    };
+    }
 
     handleSubmit = (e: React.FormEvent): void => {
         e.preventDefault();
         this.setState({
             searchTerm: this.state.searchValue
         });
-    };
+    }
 
     getStatePropsAndMethods = (): IInjectedGallerySearchProps => ({
         searchTerm: this.state.searchTerm,
         searchValue: this.state.searchValue,
         handleChange: this.handleChange,
         handleSubmit: this.handleSubmit
-    });
+    })
 
     render() {
         return this.props.children(this.getStatePropsAndMethods());

@@ -48,7 +48,7 @@ const GalleryCard: SFC<IGalleryCardProps> = ({
                     )}
                 {author_id && (
                     <StyledLinkTag href={`${flickrDotCom}/people/${author_id}`}>
-                        <span>{` by `}</span>
+                        <span>{' by '}</span>
                         <AuthorName>{author && author}</AuthorName>
                     </StyledLinkTag>
                 )}

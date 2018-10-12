@@ -4,7 +4,7 @@ import { normalize } from 'polished';
 import Head from 'next/head';
 import { colors, media } from '../../../theme';
 import { SkipLink } from '../../Atoms';
-import { Header, Footer } from '../../Molecules';
+import { Header } from '../../Molecules';
 
 injectGlobal`
     ${normalize()}
@@ -58,7 +58,7 @@ export default ({ children }) => (
         <Head>
             <meta
                 name="viewport"
-                content="width=device-width, initial-scale=1"
+                content="widthy=device-width, initial-scale=1"
             />
             <link
                 href="https://fonts.googleapis.com/css?family=Montserrat:500,600,700"

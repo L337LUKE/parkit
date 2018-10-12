@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { shade, lighten } from 'polished';
+import { lighten } from 'polished';
 
 const ProgressiveLoader = styled.div`
     @keyframes loadingAnimation {

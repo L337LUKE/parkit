@@ -9,7 +9,7 @@ interface IPhotoSearch {
     page?: number;
 }
 
-export const photoSearch = async ({
+export const photoSearch = async({
     tags = '',
     text = '',
     per_page = 12,

@@ -8,7 +8,7 @@ class GalleryFeed extends Component<IGalleryFeedProps, IGalleryFeedState> {
         isFetching: false
     };
 
-    getFeed = async ({
+    getFeed = async({
         tags,
         text
     }: {
@@ -32,7 +32,7 @@ class GalleryFeed extends Component<IGalleryFeedProps, IGalleryFeedState> {
         } catch (error) {
             console.error(error);
         }
-    };
+    }
 
     componentDidUpdate(prevProps) {
         if (this.props.text !== prevProps.text && !this.state.isFetching) {
@@ -58,7 +58,7 @@ class GalleryFeed extends Component<IGalleryFeedProps, IGalleryFeedState> {
     getMethodsPropsState = (): IInjectedProps => ({
         galleryFeed: this.state.galleryFeed,
         isFetching: this.state.isFetching
-    });
+    })
 
     render() {
         return this.props.children(this.getMethodsPropsState());

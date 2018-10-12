@@ -1,0 +1,20 @@
+{
+    "extends": "tslint-consistent-codestyle",
+    "rules": {
+        "semicolon": [true, "always"],
+        "indent": [true, "spaces", 4],
+        "ter-indent": false,
+        "strict-type-predicates": false,
+        "space-before-function-paren": [true, "never"],
+        "no-floating-promises": false,
+        "no-duplicate-imports": false,
+        "no-unused": true,
+        "quotemark": [
+            true,
+            "single",
+            "avoid-escape",
+            "avoid-template",
+            "jsx-double"
+        ]
+    }
+}
