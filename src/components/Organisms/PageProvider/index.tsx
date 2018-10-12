@@ -58,7 +58,7 @@ export default ({ children }) => (
         <Head>
             <meta
                 name="viewport"
-                content="widthy=device-width, initial-scale=1"
+                content="width=device-width, initial-scale=1"
             />
             <link
                 href="https://fonts.googleapis.com/css?family=Montserrat:500,600,700"

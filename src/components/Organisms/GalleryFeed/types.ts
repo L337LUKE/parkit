@@ -3,6 +3,7 @@ import { IFlickrPhotoSearchPhoto } from '../../../typings/iflickrApi';
 export interface IInjectedProps {
     galleryFeed: IGalleryFeedProps['galleryFeed'];
     isFetching: IGalleryFeedState['isFetching'];
+    hasError: IGalleryFeedState['hasError'];
 }
 
 export interface IGalleryFeedProps {
@@ -15,4 +16,5 @@ export interface IGalleryFeedProps {
 export interface IGalleryFeedState {
     galleryFeed: IFlickrPhotoSearchPhoto[];
     isFetching: boolean;
+    hasError: boolean;
 }

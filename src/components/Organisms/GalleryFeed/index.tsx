@@ -5,17 +5,18 @@ import { IInjectedProps, IGalleryFeedProps, IGalleryFeedState } from './types';
 class GalleryFeed extends Component<IGalleryFeedProps, IGalleryFeedState> {
     state = {
         galleryFeed: [],
-        isFetching: false
+        isFetching: false,
+        hasError: false
     };
 
-    getFeed = async({
+    getFeed = async ({
         tags,
         text
     }: {
         tags?: string;
         text?: string;
     }): Promise<void> => {
-        this.setState(() => ({ isFetching: true }));
+        this.setState(() => ({ isFetching: true, hasError: false }));
         try {
             const data = await photoSearch({
                 tags: tags && tags,
@@ -30,9 +31,12 @@ class GalleryFeed extends Component<IGalleryFeedProps, IGalleryFeedState> {
                 isFetching: false
             }));
         } catch (error) {
-            console.error(error);
+            this.setState({
+                isFetching: false,
+                hasError: true
+            });
         }
-    }
+    };
 
     componentDidUpdate(prevProps) {
         if (this.props.text !== prevProps.text && !this.state.isFetching) {
@@ -57,8 +61,9 @@ class GalleryFeed extends Component<IGalleryFeedProps, IGalleryFeedState> {
 
     getMethodsPropsState = (): IInjectedProps => ({
         galleryFeed: this.state.galleryFeed,
-        isFetching: this.state.isFetching
-    })
+        isFetching: this.state.isFetching,
+        hasError: this.state.hasError
+    });
 
     render() {
         return this.props.children(this.getMethodsPropsState());

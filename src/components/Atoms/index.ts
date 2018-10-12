@@ -5,6 +5,7 @@ export { default as IntrinsicRatio } from './IntrinsicRatio';
 export { default as Label } from './Label';
 export { default as LinkTag } from './LinkTag';
 export { default as MaxWidthContainer } from './MaxWidthContainer';
+export { default as PageError } from './PageError';
 export { default as ProgressiveLoader } from './ProgressiveLoader';
 export { default as SkipLink } from './SkipLink';
 export { default as SubmitInput } from './SubmitInput';

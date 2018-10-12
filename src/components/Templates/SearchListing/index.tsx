@@ -1,16 +1,19 @@
 import React, { Fragment } from 'react';
 import { GalleryFeed } from '../../Organisms';
 import { CardGalleryList } from '../../Templates';
+import { PageError } from '../../Atoms';
 
 const SearchListing = ({ searchTerm }) => (
     <GalleryFeed tags={searchTerm}>
-        {({ galleryFeed, isFetching }) => (
+        {({ galleryFeed, isFetching, hasError }) => (
             <Fragment>
-                {galleryFeed && (
+                {galleryFeed && !hasError ? (
                     <CardGalleryList
                         galleryItems={galleryFeed}
                         isFetching={isFetching}
                     />
+                ) : (
+                    <PageError />
                 )}
             </Fragment>
         )}
