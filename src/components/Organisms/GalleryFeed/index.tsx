@@ -1,22 +1,6 @@
 import { Component } from 'react';
 import { photoSearch } from '../../../services/flickr';
-import { IFlickrPhotoSearchPhoto } from '../../../typings/iflickrApi';
-
-interface IInjectedProps {
-    galleryFeed: IGalleryFeedProps['galleryFeed'];
-    isFetching: IGalleryFeedState['isFetching'];
-}
-
-interface IGalleryFeedProps {
-    children: (data: IInjectedProps) => JSX.Element | string;
-    tags?: string;
-    galleryFeed?: IFlickrPhotoSearchPhoto[];
-}
-
-interface IGalleryFeedState {
-    galleryFeed: IFlickrPhotoSearchPhoto[];
-    isFetching: boolean;
-}
+import { IInjectedProps, IGalleryFeedProps, IGalleryFeedState } from './types';
 
 class GalleryFeed extends Component<IGalleryFeedProps, IGalleryFeedState> {
     state = {
@@ -24,21 +8,18 @@ class GalleryFeed extends Component<IGalleryFeedProps, IGalleryFeedState> {
         isFetching: false
     };
 
-    constructor(props) {
-        super(props);
-        this.getFeed = this.getFeed.bind(this);
-    }
-
-    async getFeed(): Promise<void> {
-        const { tags } = this.props;
-
+    getFeed = async ({
+        tags,
+        text
+    }: {
+        tags?: string;
+        text?: string;
+    }): Promise<void> => {
         this.setState(() => ({ isFetching: true }));
-
         try {
-            await photoSearch({});
-
             const data = await photoSearch({
-                tags: tags && tags
+                tags: tags && tags,
+                text: text && text
             });
 
             if (!data || data.photos.photo.length <= 0)
@@ -51,10 +32,27 @@ class GalleryFeed extends Component<IGalleryFeedProps, IGalleryFeedState> {
         } catch (error) {
             console.error(error);
         }
+    };
+
+    componentDidUpdate(prevProps) {
+        if (this.props.text !== prevProps.text && !this.state.isFetching) {
+            this.getFeed({
+                text: this.props.text
+            });
+        }
+
+        if (this.props.tags !== prevProps.tags && !this.state.isFetching) {
+            this.getFeed({
+                tags: this.props.tags
+            });
+        }
     }
 
     componentDidMount() {
-        this.getFeed();
+        this.getFeed({
+            tags: this.props.tags,
+            text: this.props.text
+        });
     }
 
     getMethodsPropsState = (): IInjectedProps => ({

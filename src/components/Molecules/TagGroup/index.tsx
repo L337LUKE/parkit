@@ -1,26 +1,7 @@
-import React, { Fragment, SFC } from 'react';
-import styled from 'styled-components';
+import React, { SFC } from 'react';
 import Link from 'next/link';
-import { Tag } from '../../Atoms';
-
-interface ITagGroup {
-    tags: string[];
-    limit?: number;
-}
-
-const StyledTag = styled(Tag)`
-    margin-bottom: 0.357142857em;
-
-    & + & {
-        margin-left: 10px;
-    }
-`;
-
-const TagLine = styled.span`
-    vertical-align: top;
-    margin-right: 0.714285714em;
-    font-size: 0.875em;
-`;
+import { ITagGroup } from './types';
+import { TagLine, StyledTag } from './styles';
 
 const TagGroup: SFC<ITagGroup> = ({ tags, limit = 3 }) => {
     if (typeof tags === 'undefined' || tags.length <= 0) return;

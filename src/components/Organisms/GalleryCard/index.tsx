@@ -1,76 +1,19 @@
 import React, { SFC } from 'react';
-import styled from 'styled-components';
-import { BackgroundImage, Box, IntrinsicRatio, LinkTag } from '../../Atoms';
+import { IntrinsicRatio } from '../../Atoms';
 import { TagGroup } from '../../Molecules';
 import { hasHtml, truncate } from '../../../utils';
 import { flickrDotCom } from '../../../config/url';
 import { IGalleryCardProps } from './types';
-
-const StyledCard = styled(Box)`
-    padding: 0;
-    display: flex;
-    flex-flow: column nowrap;
-    overflow: hidden;
-    width: 100%;
-`;
-
-const StyledBackgroundImage = styled(BackgroundImage)`
-    width: 100%;
-    height: 100%;
-    transform: scale(1);
-    transition: transform 6s ease;
-
-    &:hover {
-        transform: scale(1.1);
-    }
-`;
-
-const StyledContent = styled(Box)`
-    box-shadow: none;
-`;
-
-const CardHeader = styled.div`
-    display: flex;
-    align-items: center;
-    flex-flow: row wrap;
-`;
-
-const Title = styled.h3`
-    font-size: 1em;
-    font-weight: 700;
-    display: inline-block;
-    margin: 0;
-    margin-right: 0.2em;
-`;
-
-const StyledLinkTag = styled(LinkTag)`
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-
-    span {
-        color: ${props => props.theme.black};
-    }
-`;
-
-const StyledBackgroundLinkTag = styled(LinkTag)`
-    width: 100%;
-    height: 100%;
-    display: block;
-    border: none;
-    line-height: 0;
-
-    &:hover,
-    &:active,
-    &:focus {
-        border-bottom: none;
-    }
-`;
-
-const AuthorName = styled.p`
-    display: inline-block;
-    margin: 0;
-`;
+import {
+    StyledCard,
+    StyledBackgroundImage,
+    StyledContent,
+    CardHeader,
+    Title,
+    StyledLinkTag,
+    StyledBackgroundLinkTag,
+    AuthorName
+} from './styles';
 
 const GalleryCard: SFC<IGalleryCardProps> = ({
     author,

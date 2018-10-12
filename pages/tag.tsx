@@ -1,11 +1,7 @@
 import React, { Fragment } from 'react';
 import styled from 'styled-components';
 import { CardGalleryList } from '../src/components/Templates';
-import {
-    GalleryFeed,
-    PageLayout,
-    PageProvider
-} from '../src/components/Organisms';
+import { GalleryFeed, PageProvider } from '../src/components/Organisms';
 import { MaxWidthContainer } from '../src/components/Atoms';
 
 const StyledMaxWidthContainer = styled(MaxWidthContainer)`
@@ -14,20 +10,21 @@ const StyledMaxWidthContainer = styled(MaxWidthContainer)`
 
 const TagPage = ({ query }) => (
     <PageProvider>
-        <PageLayout>
-            <StyledMaxWidthContainer>
-                <h2>Tag: {query && query.tag && query.tag}</h2>
-                <GalleryFeed tags={query && query.tag && query.tag}>
-                    {({ galleryFeed }) => (
-                        <Fragment>
-                            {galleryFeed && (
-                                <CardGalleryList galleryItems={galleryFeed} />
-                            )}
-                        </Fragment>
-                    )}
-                </GalleryFeed>
-            </StyledMaxWidthContainer>
-        </PageLayout>
+        <StyledMaxWidthContainer>
+            <h2>Tag: {query && query.tag && query.tag}</h2>
+            <GalleryFeed tags={query && query.tag && query.tag}>
+                {({ galleryFeed, isFetching }) => (
+                    <Fragment>
+                        {galleryFeed && (
+                            <CardGalleryList
+                                galleryItems={galleryFeed}
+                                isFetching={isFetching}
+                            />
+                        )}
+                    </Fragment>
+                )}
+            </GalleryFeed>
+        </StyledMaxWidthContainer>
     </PageProvider>
 );
 

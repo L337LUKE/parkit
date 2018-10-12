@@ -1,27 +1,8 @@
 import styled from 'styled-components';
-import React, { SFC } from 'react';
 import { complement } from 'polished';
 import { ILinkOwnProps } from './types';
 
-const LinkOwn: SFC<ILinkOwnProps> = ({
-    children,
-    className,
-    href,
-    openBlank,
-    title
-}) => (
-    <a
-        className={className}
-        href={href && href}
-        rel={`nofollow ${openBlank ? 'noopener' : ''}`}
-        target={openBlank && '_blank'}
-        title={title && title}
-    >
-        {children && children}
-    </a>
-);
-
-export const StyledLinkOwn = styled(LinkOwn)`
+const LinkOwn = styled.a<ILinkOwnProps>`
     text-decoration: underline;
     transition: 150ms ease color;
     border: 1px solid transparent;
@@ -40,4 +21,22 @@ export const StyledLinkOwn = styled(LinkOwn)`
     }
 `;
 
-export default StyledLinkOwn;
+export default LinkOwn;
+
+// const LinkOwn: SFC<ILinkOwnProps> = ({
+//     children,
+//     className,
+//     href,
+//     openBlank,
+//     title
+// }) => (
+//     <a
+//         className={className}
+//         href={href && href}
+//         rel={`nofollow ${openBlank ? 'noopener' : ''}`}
+//         target={openBlank && '_blank'}
+//         title={title && title}
+//     >
+//         {children && children}
+//     </a>
+// );

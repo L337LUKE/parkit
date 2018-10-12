@@ -1,8 +1,10 @@
 import React, { Fragment } from 'react';
 import { injectGlobal, ThemeProvider } from 'styled-components';
-import { colors, media } from '../../../theme';
 import { normalize } from 'polished';
 import Head from 'next/head';
+import { colors, media } from '../../../theme';
+import { SkipLink } from '../../Atoms';
+import { Header, Footer } from '../../Molecules';
 
 injectGlobal`
     ${normalize()}
@@ -28,7 +30,7 @@ injectGlobal`
     h1, h2, h3, h4 {
         font-family: Montserrat, Verdana, Sans-Serif;
         font-weight: inherit;
-        margin: 1.414em 0 0.5em;
+        margin: 1em 0 0.5em;
         line-height: 1.2;
     }
 
@@ -54,11 +56,21 @@ const theme = {
 export default ({ children }) => (
     <Fragment>
         <Head>
+            <meta
+                name="viewport"
+                content="width=device-width, initial-scale=1"
+            />
             <link
                 href="https://fonts.googleapis.com/css?family=Montserrat:500,600,700"
                 rel="stylesheet"
             />
         </Head>
-        <ThemeProvider theme={theme}>{children && children}</ThemeProvider>
+        <ThemeProvider theme={theme}>
+            <Fragment>
+                <SkipLink href="#main">Skip to main content</SkipLink>
+                <Header />
+                <main id="main">{children && children}</main>
+            </Fragment>
+        </ThemeProvider>
     </Fragment>
 );

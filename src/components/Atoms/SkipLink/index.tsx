@@ -1,18 +1,7 @@
-import React, { SFC } from 'react';
 import styled from 'styled-components';
+import { ISkipLink } from './types';
 
-interface ISkipLink {
-    className?: string;
-    id: string;
-}
-
-const SkipLink: SFC<ISkipLink> = ({ className, id }) => (
-    <a href={id} className={className}>
-        Skip to main content
-    </a>
-);
-
-const StyledSkipLink = styled(SkipLink)`
+const SkipLink = styled.a<ISkipLink>`
     position: absolute;
     width: 1px;
     height: 1px;
@@ -45,4 +34,4 @@ const StyledSkipLink = styled(SkipLink)`
     }
 `;
 
-export default StyledSkipLink;
+export default SkipLink;

@@ -11,8 +11,6 @@ export default styled.div<IBoxProps>`
     border-radius: 3px;
 
     @media only screen and (min-width: ${media.small}) {
-        .box {
-            padding: 0.625em 1.5625em;
-        }
+        padding: 0.625em 1.5625em;
     }
 `;

@@ -1,5 +1,6 @@
-import { IFlickrPhotosPublicItem } from '../../../typings/iflickrApi';
+import { IFlickrPhotoSearchPhoto } from '../../../typings/iflickrApi';
 
 export interface ICardGalleryList {
-    galleryItems: IFlickrPhotosPublicItem[];
+    galleryItems: IFlickrPhotoSearchPhoto[];
+    isFetching: boolean;
 }

@@ -9,6 +9,7 @@
         "start": "next start"
     },
     "dependencies": {
+        "dompurify": "^1.0.8",
         "jsonp-p": "^2.0.0",
         "next": "^7.0.1",
         "react": "^16.5.2",
